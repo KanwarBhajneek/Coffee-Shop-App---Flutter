@@ -1,3 +1,4 @@
+import 'package:coffee_shop_app/screens/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -88,7 +89,7 @@ class _BottomBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications_none),
-            label: 'Profile',
+            label: 'Notifications',
           ),
         ],
       ),
@@ -172,126 +173,134 @@ class _CofeeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: 140,
-                height: 128,
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Detail()),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                SizedBox(
                   width: 140,
                   height: 128,
-                ),
-              ),
-
-              Positioned(
-                right: 0,
-                top: 0,
-                child: Container(
-                  width: 51,
-                  padding: const EdgeInsets.all(8),
-                  decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment(1.00, -0.00),
-                      end: Alignment(-0.00, 1.00),
-                      colors: [
-                        const Color(0xFF111111),
-                        const Color(0xFF303030),
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12),
-                        bottomLeft: Radius.circular(24),
-                      ),
-                    ),
+                  child: Image.asset(
+                    image,
+                    fit: BoxFit.cover,
+                    width: 140,
+                    height: 128,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 4,
-                    children: [
-                      SvgPicture.asset(
-                        'Assets/Images/ic_star.svg',
-                        width: 12,
-                        height: 12,
+                ),
+
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    width: 51,
+                    padding: const EdgeInsets.all(8),
+                    decoration: ShapeDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(1.00, -0.00),
+                        end: Alignment(-0.00, 1.00),
+                        colors: [
+                          const Color(0xFF111111),
+                          const Color(0xFF303030),
+                        ],
                       ),
-                      Text(
-                        rating.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 8,
-                          fontWeight: FontWeight.w600,
-                          height: 1.50,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(24),
                         ),
                       ),
-                    ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 4,
+                      children: [
+                        SvgPicture.asset(
+                          'Assets/Images/ic_star.svg',
+                          width: 12,
+                          height: 12,
+                        ),
+                        Text(
+                          rating.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600,
+                            height: 1.50,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-
-          Text(
-            name,
-            style: TextStyle(
-              color: const Color(0xFF242424),
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              height: 1.50,
+              ],
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            type,
-            style: TextStyle(
-              color: const Color(0xFFA2A2A2),
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              height: 1.20,
-            ),
-          ),
-          const SizedBox(height: 4),
+            const SizedBox(height: 8),
 
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '\$ $price',
-                style: TextStyle(
-                  color: const Color(0xFF050505),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  height: 1.50,
-                ),
+            Text(
+              name,
+              style: TextStyle(
+                color: const Color(0xFF242424),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                height: 1.50,
               ),
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFC67C4E),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Icon(Icons.add, size: 16, color: Colors.white),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              type,
+              style: TextStyle(
+                color: const Color(0xFFA2A2A2),
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                height: 1.20,
               ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 4),
+
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '\$ $price',
+                  style: TextStyle(
+                    color: const Color(0xFF050505),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    height: 1.50,
+                  ),
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFC67C4E),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(Icons.add, size: 16, color: Colors.white),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
